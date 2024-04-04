@@ -13,7 +13,6 @@ async function signup() {
         body: JSON.stringify(customer)
       };
       try {
-        console.log(request);
         let response = await fetch(getHost() + "/signup", request);
         if(response.status == 200) {  
             alert("The registration was successful!")

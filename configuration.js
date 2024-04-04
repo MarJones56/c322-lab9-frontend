@@ -1,7 +1,7 @@
 const mode = 0;
 
 const host_local = "http://localhost:8080";
-const host_remote = "";
+const host_remote = "https://ducks-service-latest-1-pobl.onrender.com";
 
 function getHost() {
     return (mode == 0) ? host_local : host_remote;
@@ -53,8 +53,7 @@ async function login() {
     let request = {
         method: "POST",
         headers: {
-            "Content=Type": "application/json",
-            "Authorization": 'Bearer ${configuration.token()}'
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(customer)
     };
@@ -64,9 +63,9 @@ async function login() {
             alert("Login was successful");
             const token = await response.text();
             saveTheToken(token);
-            location.href = "insex.html";
+            location.href = "index.html";
         } else {
-            console.log('response status:${response.status}');
+            console.log(`response status:${response.status}`);
             removeTheToken();
             alert("Something went wrong");
         }
@@ -75,8 +74,8 @@ async function login() {
         removeTheToken();
         alert("Something went wrong");
     }
+}
 
-    async function logout() {
-        removeTheToken();
-    }
+async function logout() {
+    removeTheToken();
 }
